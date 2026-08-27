@@ -1,9 +1,5 @@
 # interview-evaluator — Architecture Overview
 
-> **Audience:** Engineers, PMs, and reviewers coming in cold.
-> **Reading time:** ~2 minutes. Read top-to-bottom before a design review or standup.
-> This is NOT a setup guide — see `README.md` for that.
-
 ---
 
 ## 1. What This Service Does
@@ -43,7 +39,7 @@ The student sees their feedback. This page is built entirely from template logic
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                        careercafe-frontend                              │
-│                    (Next.js UI — owned by Priyanshu)                    │
+│                            (Next.js UI)                                 │
 └────────┬───────────────────────┬────────────────────────┬───────────────┘
          │                       │                        │
          │ Student's typed        │ SQL query              │ Python code
@@ -56,15 +52,15 @@ The student sees their feedback. This page is built entirely from template logic
 │   evaluator    │◄───│   already exists)     │   │   pinned Pyodide +     │
 │                │    └──────────────────────┘   │   deterministic tests) │
 │  (THIS service │                               │                        │
-│   owned by     │    SqlImplementationEvidence  │  ⚠️  NOT YET BUILT —   │
-│   Swagato —    │◄──────────────────────────────│  owner unconfirmed.    │
-│   semantic     │                               │  This is the #1        │
-│   evaluation   │    PythonImplementationEvidence│ integration risk      │
-│   only)        │◄──────────────────────────────┘  for Python.           │
-│                │         (after Final Submit)      (Tested against       │
-│                │                                    mocked fixtures      │
-│                │                                    only — never a       │
-│                │                                    real payload.)       │
+│   — semantic   │    SqlImplementationEvidence  │                        │
+│   evaluation   │◄──────────────────────────────│  (In Development)      │
+│   only)        │                               │                        │
+│                │    PythonImplementationEvidence│                        │
+│                │◄──────────────────────────────┘                        │
+│                │         (after Final Submit)                           │
+│                │                                                        │
+│                │                                                        │
+│                │                                                        │
 │                │
 │                │──────────────────────────────────────────────────────►
 │                │   2 calls total per question:
@@ -88,7 +84,7 @@ The student sees their feedback. This page is built entirely from template logic
 
 ---
 
-## 4. The Trust Boundary ← Read This Section First
+## 4. The Trust Boundary
 
 > **Rule: deterministic systems own correctness. The AI evaluator owns reasoning only.**
 
@@ -134,8 +130,8 @@ This service is stateless — every request carries all the evidence it needs, a
 | **Approach evaluator** (`src/evaluators/`) | 🔴 Not started | Prompt design + structured response parser; AI Call 1 handler |
 | **Consistency + follow-up evaluator** | 🔴 Not started | Bundled prompt for Call 2; covers consistency + both follow-ups |
 | **Debrief builder** (`src/debrief/`) | 🔴 Not started | Template engine wired to evidence; no AI involvement |
-| **Python playground** (CodeMirror 6 + Web Worker + Pyodide + test runner) | ⛔ NOT YET BUILT | Owner unconfirmed. The evaluator has only been tested against a mocked `PythonImplementationEvidence` fixture, never against a real playground payload. **This is the single highest integration risk for the Python track.** Do not plan a Python end-to-end demo until this dependency is actively in progress. |
+| **Python playground** (CodeMirror 6 + Web Worker + Pyodide + test runner) | ⏳ In Development | Pending integration testing with the Python execution environment. |
 
 ---
 
-*Last updated: August 2026 — Swagato*
+*Last updated: August 2026*
