@@ -27,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: ./interview-evaluator
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: TypeScript compile check
         working-directory: ./interview-evaluator
