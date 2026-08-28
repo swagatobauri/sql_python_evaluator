@@ -1,0 +1,29 @@
+{
+  "_comment": "TODO: Reconcile placeholder with actual question bank.",
+  "questionId": "sql_subquery_004",
+  "domain": "sql",
+  "expectedApproaches": [
+    "use an IN or EXISTS clause with a subquery to find active users",
+    "alternatively, join to active users and use DISTINCT"
+  ],
+  "tradeoffRelevant": true,
+  "commonMistakes": [
+    "using IN with a subquery containing NULLs",
+    "joining without DISTINCT causing row duplication"
+  ],
+  "practiceTags": ["subqueries", "exists", "joins"],
+  "followUps": [
+    {
+      "question": "Why might EXISTS perform better than IN for this query?",
+      "expectedConcepts": ["Short-circuit evaluation", "Optimizer behavior"],
+      "acceptablePoints": ["EXISTS stops evaluating once a match is found"],
+      "criticalMisconceptions": ["IN is always faster"]
+    },
+    {
+      "question": "What happens if the subquery returns NULL values?",
+      "expectedConcepts": ["NOT IN with NULL returns empty set", "Three-valued logic"],
+      "acceptablePoints": ["NOT IN fails unexpectedly if there are NULLs"],
+      "criticalMisconceptions": ["NULLs are just ignored in IN/NOT IN"]
+    }
+  ]
+}

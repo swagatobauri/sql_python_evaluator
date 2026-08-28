@@ -1,0 +1,29 @@
+{
+  "_comment": "TODO: Reconcile placeholder with actual question bank.",
+  "questionId": "sql_multijoin_005",
+  "domain": "sql",
+  "expectedApproaches": [
+    "join users to orders, then orders to products",
+    "ensure correct join types (INNER vs LEFT) for each relationship"
+  ],
+  "tradeoffRelevant": false,
+  "commonMistakes": [
+    "chaining INNER JOINs which drops users with no orders",
+    "cartesian product due to missing join conditions"
+  ],
+  "practiceTags": ["joins", "data-modeling"],
+  "followUps": [
+    {
+      "question": "If you use a LEFT JOIN for the first table, what join should the second table use?",
+      "expectedConcepts": ["Preserving the left side", "Subsequent LEFT JOINs"],
+      "acceptablePoints": ["Must also use LEFT JOIN to not undo the first one"],
+      "criticalMisconceptions": ["You can mix INNER and LEFT arbitrarily without consequences"]
+    },
+    {
+      "question": "How do you handle column name collisions between the three tables?",
+      "expectedConcepts": ["Table aliases", "Explicit column selection"],
+      "acceptablePoints": ["Prefix column names with table aliases"],
+      "criticalMisconceptions": ["The database automatically figures it out"]
+    }
+  ]
+}

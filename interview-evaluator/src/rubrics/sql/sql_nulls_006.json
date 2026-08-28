@@ -1,0 +1,29 @@
+{
+  "_comment": "TODO: Reconcile placeholder with actual question bank.",
+  "questionId": "sql_nulls_006",
+  "domain": "sql",
+  "expectedApproaches": [
+    "use COALESCE or IFNULL to replace missing values with 0",
+    "handle NULLs in arithmetic operations carefully"
+  ],
+  "tradeoffRelevant": false,
+  "commonMistakes": [
+    "comparing NULLs using = instead of IS NULL",
+    "forgetting that arithmetic with NULL yields NULL"
+  ],
+  "practiceTags": ["null-handling", "coalesce", "functions"],
+  "followUps": [
+    {
+      "question": "What does the expression 'value = NULL' evaluate to?",
+      "expectedConcepts": ["UNKNOWN", "Three-valued logic"],
+      "acceptablePoints": ["It evaluates to false/unknown, use IS NULL"],
+      "criticalMisconceptions": ["It evaluates to true if value is NULL"]
+    },
+    {
+      "question": "How does COUNT(column) differ from COUNT(*)?",
+      "expectedConcepts": ["Counting non-nulls vs counting rows"],
+      "acceptablePoints": ["COUNT(column) ignores NULLs"],
+      "criticalMisconceptions": ["They are exactly identical"]
+    }
+  ]
+}

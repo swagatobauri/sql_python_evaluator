@@ -1,0 +1,29 @@
+{
+  "_comment": "TODO: Reconcile placeholder with actual question bank.",
+  "questionId": "sql_dateagg_007",
+  "domain": "sql",
+  "expectedApproaches": [
+    "truncate timestamp to month/year using DATE_TRUNC or equivalent",
+    "group by the truncated date field"
+  ],
+  "tradeoffRelevant": true,
+  "commonMistakes": [
+    "grouping by full timestamp causing no aggregation",
+    "string manipulation instead of native date functions"
+  ],
+  "practiceTags": ["date-functions", "aggregation"],
+  "followUps": [
+    {
+      "question": "How would you handle months that have zero sales?",
+      "expectedConcepts": ["Date dimension tables", "Calendar tables", "LEFT JOIN"],
+      "acceptablePoints": ["Join against a static calendar table"],
+      "criticalMisconceptions": ["The database automatically fills missing dates"]
+    },
+    {
+      "question": "Are there timezone considerations for this aggregation?",
+      "expectedConcepts": ["UTC conversion", "Timezone offsets"],
+      "acceptablePoints": ["Yes, dates might roll into different months in different zones"],
+      "criticalMisconceptions": ["Dates are absolute regardless of timezone"]
+    }
+  ]
+}

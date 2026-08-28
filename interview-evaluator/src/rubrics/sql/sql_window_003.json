@@ -1,0 +1,29 @@
+{
+  "_comment": "TODO: Reconcile placeholder with actual question bank.",
+  "questionId": "sql_window_003",
+  "domain": "sql",
+  "expectedApproaches": [
+    "use DENSE_RANK() over partition by category ordered by salary desc",
+    "filter for rank <= 3 using a CTE or subquery"
+  ],
+  "tradeoffRelevant": true,
+  "commonMistakes": [
+    "using ROW_NUMBER() instead of DENSE_RANK() which fails on ties",
+    "trying to use window function directly in WHERE clause"
+  ],
+  "practiceTags": ["window-functions", "ranking", "cte"],
+  "followUps": [
+    {
+      "question": "What is the difference between RANK() and DENSE_RANK() here?",
+      "expectedConcepts": ["Gap in rank sequence", "DENSE_RANK doesn't skip numbers"],
+      "acceptablePoints": ["RANK skips numbers after ties"],
+      "criticalMisconceptions": ["They are exactly the same"]
+    },
+    {
+      "question": "Can we achieve this without window functions?",
+      "expectedConcepts": ["Self joins", "Correlated subqueries"],
+      "acceptablePoints": ["Yes, but it's very inefficient"],
+      "criticalMisconceptions": ["It's impossible without window functions"]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "_comment": "TODO: Reconcile placeholder with actual question bank.",
+  "questionId": "sql_ranking_008",
+  "domain": "sql",
+  "expectedApproaches": [
+    "calculate percentage or ratio over total using window functions",
+    "use SUM() OVER() to get grand total without grouping"
+  ],
+  "tradeoffRelevant": true,
+  "commonMistakes": [
+    "integer division truncating the percentage to 0",
+    "unnecessary self-joins to calculate the grand total"
+  ],
+  "practiceTags": ["window-functions", "math", "ratios"],
+  "followUps": [
+    {
+      "question": "How do you prevent division by zero in your query?",
+      "expectedConcepts": ["NULLIF function", "CASE statements"],
+      "acceptablePoints": ["Use NULLIF(denominator, 0)"],
+      "criticalMisconceptions": ["The database handles division by zero safely by default"]
+    },
+    {
+      "question": "Why is using SUM() OVER() better than a subquery for the total?",
+      "expectedConcepts": ["Single pass execution", "Performance"],
+      "acceptablePoints": ["It avoids scanning the table a second time"],
+      "criticalMisconceptions": ["Subqueries are inherently faster"]
+    }
+  ]
+}

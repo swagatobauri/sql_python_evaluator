@@ -1,0 +1,29 @@
+{
+  "_comment": "TODO: Reconcile placeholder with actual question bank.",
+  "questionId": "sql_groupby_002",
+  "domain": "sql",
+  "expectedApproaches": [
+    "group by department",
+    "use HAVING clause to filter groups based on aggregate sum"
+  ],
+  "tradeoffRelevant": false,
+  "commonMistakes": [
+    "using WHERE instead of HAVING for aggregate conditions",
+    "omitting non-aggregated columns from GROUP BY"
+  ],
+  "practiceTags": ["group-by", "having", "aggregation"],
+  "followUps": [
+    {
+      "question": "Why can't we use the WHERE clause to filter the total sales > 10000?",
+      "expectedConcepts": ["Execution order", "WHERE evaluates before GROUP BY"],
+      "acceptablePoints": ["WHERE filters rows before aggregation"],
+      "criticalMisconceptions": ["WHERE and HAVING are interchangeable"]
+    },
+    {
+      "question": "What happens to NULL departments in this grouping?",
+      "expectedConcepts": ["NULLs are grouped into a single bucket"],
+      "acceptablePoints": ["They form one group"],
+      "criticalMisconceptions": ["NULLs are ignored by GROUP BY entirely"]
+    }
+  ]
+}

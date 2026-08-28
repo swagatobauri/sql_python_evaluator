@@ -8,6 +8,8 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "test": "tsx --test test/**/*.test.ts",
+    "check": "biome check src test",
+    "check:fix": "biome check --write src test",
     "db:push": "drizzle-kit push",
     "db:seed": "tsx src/db/seed.ts",
     "benchmark": "tsx benchmark/index.ts"
@@ -28,12 +30,12 @@
     "drizzle-orm": "^0.45.2",
     "express": "^5.2.1",
     "pg": "^8.23.0",
-    "zod": "^4.4.3"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/express": "^5.0.6",
-    "@types/node": "^26.3.0",
-    "@types/pg": "^8.23.1",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.5.0",
+    "@types/pg": "^8.11.8",
     "@typescript-eslint/eslint-plugin": "^8.68.0",
     "@typescript-eslint/parser": "^8.68.0",
     "drizzle-kit": "^0.31.10",

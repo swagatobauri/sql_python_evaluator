@@ -1,0 +1,30 @@
+{
+  "_comment": "TODO: Reconcile placeholder with actual question bank.",
+  "questionId": "sql_join_001",
+  "domain": "sql",
+  "expectedApproaches": [
+    "join customers to orders using the correct key",
+    "aggregate at the required customer grain"
+  ],
+  "tradeoffRelevant": false,
+  "commonMistakes": [
+    "wrong join key",
+    "inner join when unmatched customers must remain",
+    "aggregation at the wrong grain"
+  ],
+  "practiceTags": ["joins", "aggregation"],
+  "followUps": [
+    {
+      "question": "What if a customer has no orders? Should they appear in the result?",
+      "expectedConcepts": ["LEFT JOIN", "Handling NULL values"],
+      "acceptablePoints": ["Use left outer join to keep all customers"],
+      "criticalMisconceptions": ["INNER JOIN keeps unmatched rows"]
+    },
+    {
+      "question": "How would you optimize this if the orders table is massive?",
+      "expectedConcepts": ["Indexes on join keys", "Pre-aggregation before join"],
+      "acceptablePoints": ["Group the orders first, then join"],
+      "criticalMisconceptions": ["Avoiding joins completely"]
+    }
+  ]
+}

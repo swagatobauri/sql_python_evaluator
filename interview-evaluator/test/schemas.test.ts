@@ -18,7 +18,7 @@ test('ApproachEvidenceSchema should pass valid objects', () => {
     misconceptions: []
   };
   const result = ApproachEvidenceSchema.safeParse(valid);
-  assert.ok(result.success, result.error?.message);
+  assert.ok(result.success, result.error?.message ?? "Validation failed");
 });
 
 test('ApproachEvidenceSchema should fail on missing required fields', () => {
@@ -43,7 +43,7 @@ test('PythonImplementationEvidenceSchema should pass valid objects', () => {
     runCount: 2
   };
   const result = PythonImplementationEvidenceSchema.safeParse(valid);
-  assert.ok(result.success, result.error?.message);
+  assert.ok(result.success, result.error?.message ?? "Validation failed");
 });
 
 test('InterviewEvidenceSchema should pass valid objects', () => {
@@ -85,7 +85,7 @@ test('InterviewEvidenceSchema should pass valid objects', () => {
     semanticStatus: "complete"
   };
   const result = InterviewEvidenceSchema.safeParse(valid);
-  assert.ok(result.success, result.error?.message);
+  assert.ok(result.success, result.error?.message ?? "Validation failed");
 });
 
 test('InterviewEvidenceSchema should fail with missing followups', () => {
@@ -140,5 +140,5 @@ test('QuestionRubricSchema should pass valid objects', () => {
     ]
   };
   const result = QuestionRubricSchema.safeParse(valid);
-  assert.ok(result.success, result.error?.message);
+  assert.ok(result.success, result.error?.message ?? "Validation failed");
 });
