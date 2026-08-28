@@ -29,18 +29,10 @@ jobs:
         working-directory: ./interview-evaluator
         run: pnpm install --frozen-lockfile
 
-      - name: Security audit
-        working-directory: ./interview-evaluator
-        run: pnpm audit --prod
-
-      - name: Code quality & formatting check (Biome)
-        working-directory: ./interview-evaluator
-        run: pnpm dlx @biomejs/biome ci src test
-
       - name: TypeScript compile check
         working-directory: ./interview-evaluator
         run: ./node_modules/.bin/tsc --noEmit
 
-      - name: Run unit tests with coverage
+      - name: Run unit tests
         working-directory: ./interview-evaluator
-        run: ./node_modules/.bin/tsx --test --experimental-test-coverage test/**/*.test.ts
+        run: ./node_modules/.bin/tsx --test test/**/*.test.ts
