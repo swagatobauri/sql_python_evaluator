@@ -35,7 +35,7 @@ jobs:
 
       - name: Code quality & formatting check (Biome)
         working-directory: ./interview-evaluator
-        run: npx @biomejs/biome ci src test
+        run: pnpm dlx @biomejs/biome ci src test
 
       - name: TypeScript compile check
         working-directory: ./interview-evaluator

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const FollowUpRubricSchema = z.object({
   question: z.string(),

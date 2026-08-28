@@ -1,27 +1,25 @@
-import test from 'node:test';
-import assert from 'node:assert/strict';
-import { 
-  ApproachEvidenceSchema, 
+import assert from "node:assert/strict";
+import test from "node:test";
+import {
+  ApproachEvidenceSchema,
   InterviewEvidenceSchema,
-  PythonImplementationEvidenceSchema
-} from '../src/schemas/evidence.js';
-import { 
-  QuestionRubricSchema 
-} from '../src/schemas/rubric.js';
+  PythonImplementationEvidenceSchema,
+} from "../src/schemas/evidence.js";
+import { QuestionRubricSchema } from "../src/schemas/rubric.js";
 
-test('ApproachEvidenceSchema should pass valid objects', () => {
+test("ApproachEvidenceSchema should pass valid objects", () => {
   const valid = {
     score: 8,
     criteria: { "Workable approach": "MET" },
     strengths: ["good logic"],
     improvements: [],
-    misconceptions: []
+    misconceptions: [],
   };
   const result = ApproachEvidenceSchema.safeParse(valid);
   assert.ok(result.success, result.error?.message ?? "Validation failed");
 });
 
-test('ApproachEvidenceSchema should fail on missing required fields', () => {
+test("ApproachEvidenceSchema should fail on missing required fields", () => {
   const invalid = {
     score: 8,
     // missing criteria, strengths, etc.
@@ -30,7 +28,7 @@ test('ApproachEvidenceSchema should fail on missing required fields', () => {
   assert.equal(result.success, false);
 });
 
-test('PythonImplementationEvidenceSchema should pass valid objects', () => {
+test("PythonImplementationEvidenceSchema should pass valid objects", () => {
   const valid = {
     source: "pyodide",
     executionLocation: "browser",
@@ -40,13 +38,13 @@ test('PythonImplementationEvidenceSchema should pass valid objects', () => {
     testsTotal: 5,
     failedTestIds: [],
     durationMs: 120,
-    runCount: 2
+    runCount: 2,
   };
   const result = PythonImplementationEvidenceSchema.safeParse(valid);
   assert.ok(result.success, result.error?.message ?? "Validation failed");
 });
 
-test('InterviewEvidenceSchema should pass valid objects', () => {
+test("InterviewEvidenceSchema should pass valid objects", () => {
   const valid = {
     domain: "sql",
     approach: {
@@ -54,16 +52,16 @@ test('InterviewEvidenceSchema should pass valid objects', () => {
       criteria: { "Workable plan": "MET" },
       strengths: [],
       improvements: [],
-      misconceptions: []
+      misconceptions: [],
     },
     implementation: {
       deterministicStatus: "pass",
       detectedMistakes: [],
-      runCount: 1
+      runCount: 1,
     },
     consistency: {
       status: "matched",
-      contradictions: []
+      contradictions: [],
     },
     followups: [
       {
@@ -71,24 +69,24 @@ test('InterviewEvidenceSchema should pass valid objects', () => {
         covered: [],
         gaps: [],
         misconceptions: [],
-        evidence: []
+        evidence: [],
       },
       {
         status: "PARTIAL",
         covered: [],
         gaps: [],
         misconceptions: [],
-        evidence: []
-      }
+        evidence: [],
+      },
     ],
     correctiveTags: ["joins"],
-    semanticStatus: "complete"
+    semanticStatus: "complete",
   };
   const result = InterviewEvidenceSchema.safeParse(valid);
   assert.ok(result.success, result.error?.message ?? "Validation failed");
 });
 
-test('InterviewEvidenceSchema should fail with missing followups', () => {
+test("InterviewEvidenceSchema should fail with missing followups", () => {
   const invalid = {
     domain: "sql",
     approach: {
@@ -96,26 +94,26 @@ test('InterviewEvidenceSchema should fail with missing followups', () => {
       criteria: { "Workable plan": "MET" },
       strengths: [],
       improvements: [],
-      misconceptions: []
+      misconceptions: [],
     },
     implementation: {
       deterministicStatus: "pass",
       detectedMistakes: [],
-      runCount: 1
+      runCount: 1,
     },
     consistency: {
       status: "matched",
-      contradictions: []
+      contradictions: [],
     },
     // missing followups tuple
     correctiveTags: ["joins"],
-    semanticStatus: "complete"
+    semanticStatus: "complete",
   };
   const result = InterviewEvidenceSchema.safeParse(invalid);
   assert.equal(result.success, false);
 });
 
-test('QuestionRubricSchema should pass valid objects', () => {
+test("QuestionRubricSchema should pass valid objects", () => {
   const valid = {
     questionId: "py_hash_001",
     domain: "python",
@@ -129,15 +127,15 @@ test('QuestionRubricSchema should pass valid objects', () => {
         question: "What if it doesn't fit in memory?",
         expectedConcepts: ["batching"],
         acceptablePoints: [],
-        criticalMisconceptions: []
+        criticalMisconceptions: [],
       },
       {
         question: "Can we sort it?",
         expectedConcepts: ["sort then two pointers"],
         acceptablePoints: [],
-        criticalMisconceptions: []
-      }
-    ]
+        criticalMisconceptions: [],
+      },
+    ],
   };
   const result = QuestionRubricSchema.safeParse(valid);
   assert.ok(result.success, result.error?.message ?? "Validation failed");

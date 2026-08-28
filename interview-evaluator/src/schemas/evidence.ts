@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const CriterionStatusSchema = z.enum(["MET", "PARTIAL", "MISSING", "INCORRECT"]);
 export type CriterionStatus = z.infer<typeof CriterionStatusSchema>;
@@ -20,10 +20,12 @@ export const PythonImplementationEvidenceSchema = z.object({
   testsPassed: z.number(),
   testsTotal: z.number(),
   failedTestIds: z.array(z.string()),
-  runtimeError: z.object({
-    type: z.string(),
-    line: z.number().optional(),
-  }).optional(),
+  runtimeError: z
+    .object({
+      type: z.string(),
+      line: z.number().optional(),
+    })
+    .optional(),
   durationMs: z.number(),
   runCount: z.number(),
 });
@@ -35,7 +37,7 @@ export const ConsistencyEvidenceSchema = z.object({
     z.object({
       candidateClaim: z.string(),
       observedImplementationEvidence: z.string(),
-    })
+    }),
   ),
 });
 export type ConsistencyEvidence = z.infer<typeof ConsistencyEvidenceSchema>;
